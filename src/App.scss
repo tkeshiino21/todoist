@@ -1,0 +1,265 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+img {
+  opacity: 0.1;
+}
+
+body {
+  margin: 0;
+  padding: 0 ;
+  line-height: 1;
+  font-family: 'Helvetica Standard';
+  color: #000 !important;
+  background-color: #fafafa;
+  margin-left: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 13px !important;
+  line-height: 17px;
+  white-space: nowrap;
+  border-radius: 3px !important;
+  text-decoration: none !important;
+  text-align: center;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+$generic-box-shadow: rgba(0,0,0,0.1) 0px 0px 0px 1px, rgba(0,0,0,0.1) 0px 4px 11px;
+$generic-border:1px solid #f1f1f1;
+$generic-bg: #db4c3f;
+
+@mixin task-item(){
+  list-style-type: none;
+  display: flex;
+  color: #555;
+  padding-top: 10px;
+  padding-left: 10px;
+  border-left-style: none;
+}
+
+@mixin cancel() {
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 2px 5px;
+}
+
+@mixin mg($from) {
+  @media (max-width: $from) {
+    @content;
+  }
+}
+
+@mixin mq($from){
+  @media (max-width: $from) {
+    @content;
+  }
+}
+
+@mixin va($from) {
+  @media (max-width: $from) {
+    display: flex;
+    align-items:center;
+
+    @if $va-align  != center {
+      justify-content: left;
+    } @else {
+      justify-content: center
+    }
+  }
+}
+
+@mixin box-overlay() {
+  box-shadow: $generic-box-shadow;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  top: 85px;
+  border-radius: 3px;
+}
+
+@mixin btn($width){
+  margin: 0;
+  padding: 0 ;
+  line-height: 1;
+  font-family: 'Roboto';
+  color: #000 !important;
+  background-color: #fafafa;
+  margin-left: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 13px !important;
+  line-height: 17px;
+  white-space: nowrap;
+  border-radius: 3px !important;
+  text-decoration: none !important;
+  text-align: center;
+  cursor: pointer;
+}
+
+@include mg('900px'){
+  padding: 0 10px;
+}
+
+
+
+nav {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1px;
+  grid-column-start: auto;
+  height: 90px;
+  max-width: 1200px;
+}
+
+div {
+  &.logo {
+    padding-left: 0px;
+    grid-area: 1/1;
+
+    img {
+      width: 24px;
+    }
+  }
+
+  &.settings {
+    grid-area: 1/2;
+    text-align: right;
+
+    ul {
+      float: right;
+
+      li {
+        list-style-type: none;
+        display: inline;
+      }
+    }
+  }
+}
+
+.darkmode {
+  header {
+    box-shadow: - 1px 3px - rgba(0,0,0,0.15);
+    background-color: #282828;
+    border-color: transparent;
+  }
+}
+
+header {
+  border-bottom: solid 1px #ca2100;
+  background-color: $generic-bg;
+  transition: height 200ms ease-in;
+  box-shadow: - 1px 2px rgba(0,0,0,0.15);
+  height: 44px;
+  z-index: 400;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: #fff;
+}
+
+@include mq(900px){
+  padding: 0 10px;
+}
+
+nav {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-row-gap: 0px;
+  grid-column-gap: 0px;
+  max-width: 922px;
+  margin: auto;
+  height: 44px;
+
+  p, li {
+    color: white;
+  }
+
+  div {
+    &.logo {
+      padding-left: 0px;
+      grid-area: 1/1;
+
+      img{
+        width: 24px;
+      }
+    }
+
+    &.settings {
+      grid-area: 1/2;
+      text-align: right;
+
+      ul {
+        float: right;
+      }
+
+      li {
+
+        list-style-type: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        vertical-align: middle;
+        float: left;
+
+        &:hover {
+          border-radius: 2px;
+          background-color: rgba(255,255,0, 2)
+        }
+      };
+    }
+
+  }
+}
+
+.sidebar {
+  width: 266px;
+  height: calc(100vh);
+  padding-top: 74px;
+  position: fixed;
+  border-right: $generic-border;
+  background-color: #fafafa;
+
+  li {
+    padding-left: 10px;
+    padding-right: 15px;
+
+    &:hover .sidebar__project-delete {
+      display: block;
+    }
+  }
+
+  &__project {
+    padding: 5px 0;
+    cursor: pointer;
+
+    &-delete {
+      margin-left: auto;
+      display: none;
+
+      svg {
+        color: #cacaca;
+      }
+
+      &.active, &:hover {
+        font-weight: bold;
+        background-color: white;
+      }
+    }
+
+  }
+}
