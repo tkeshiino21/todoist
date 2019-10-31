@@ -265,13 +265,43 @@ nav {
       svg {
         color: #cacaca;
       }
+    }
+    &.active, &:hover {
+      font-weight: bold;
+      background-color: white;
+    }
 
-      &.active, &:hover {
-        font-weight: bold;
-        background-color: white;
+    &:nth-child(1) {
+      .sidebar__dot {
+        color: #6accbc;
       }
     }
 
+    &:nth-child(2) {
+      .sidebar__dot {
+        color: #fad003;
+      }
+    }
+
+    &:nth-child(3){
+      .sidebar__dot {
+        color: #ff8d85;
+      }
+    }
+
+    &:nth-child(4) {
+      .sidebar__dot {
+        color: #af38a4;
+      }
+    }
+  }
+
+  &__projects {
+    padding-left: 3px;
+  }
+
+  &__project {
+    text-align: left;
   }
 }
 

@@ -210,8 +210,32 @@ nav div.settings li.settings__dark-mode svg {
   color: #cacaca;
 }
 
-.sidebar__project-delete.active, .sidebar__project-delete:hover {
+.sidebar__project.active, .sidebar__project:hover {
   font-weight: bold;
   background-color: white;
+}
+
+.sidebar__project:nth-child(1) .sidebar__dot {
+  color: #6accbc;
+}
+
+.sidebar__project:nth-child(2) .sidebar__dot {
+  color: #fad003;
+}
+
+.sidebar__project:nth-child(3) .sidebar__dot {
+  color: #ff8d85;
+}
+
+.sidebar__project:nth-child(4) .sidebar__dot {
+  color: #af38a4;
+}
+
+.sidebar__projects {
+  padding-left: 3px;
+}
+
+.sidebar__project {
+  text-align: left;
 }
 /*# sourceMappingURL=App.css.map */
