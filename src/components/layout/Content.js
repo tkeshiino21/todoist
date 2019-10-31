@@ -1,6 +1,6 @@
-import React from 'react'
-import { Sidebar } from './Sidebar'
-import { Tasks } from './Tasks';
+import React from "react";
+import { Sidebar } from "./Sidebar";
+import { Tasks } from "./Tasks";
 
 export const Content = () => {
   return (
@@ -8,5 +8,5 @@ export const Content = () => {
       <Sidebar />
       <Tasks />
     </section>
-  )
-}
+  );
+};
