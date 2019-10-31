@@ -41,11 +41,12 @@ export const useTasks = selectedProject => {
             )
           : newTasks.filter(task => task.archived !== true)
       );
-
       setArchievedTasks(newTasks.filter(task => task.archived !== false));
     });
+
     return () => unsubscribe();
   }, [selectedProject]);
+
   return { tasks, archivedTasks };
 };
 
@@ -56,22 +57,19 @@ export const useProjects = () => {
     firebase
       .firestore()
       .collection("projects")
-      .where("useId", "==", "4321")
+      .where("userId", "==", "43215")
       .orderBy("projectId")
       .get()
-      .then(
-        snapshot => {
-          const allProjects = snapshot.docs.map(project => ({
-            ...project.data(),
-            docId: project.id
-          }));
+      .then(snapshot => {
+        const allProjects = snapshot.docs.map(project => ({
+          ...project.data(),
+          docId: project.id
+        }));
 
-          if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-            setProjects(allProjects);
-          }
-        },
-        [projects]
-      );
-  });
+        if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
+          setProjects(allProjects);
+        }
+      });
+  }, [projects]);
   return { projects, setProjects };
 };

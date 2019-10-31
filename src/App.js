@@ -1,22 +1,18 @@
 import React from "react";
 import "./App.scss";
 import { Header } from "./components/layout/Header";
-import { Sidebar } from "./components/layout/Sidebar";
 import { Content } from "./components/layout/Content";
-import { ProjectsProvider, SelectedProjectsProvider } from "./context";
+import { ProjectsProvider, SelectedProjectProvider } from "./context";
 
-function App() {
+export const App = () => {
   return (
-    <SelectedProjectsProvider>
+    <SelectedProjectProvider>
       <ProjectsProvider>
         <div className="App">
           <Header />
-          <Sidebar />
           <Content />
         </div>
       </ProjectsProvider>
-    </SelectedProjectsProvider>
+    </SelectedProjectProvider>
   );
-}
-
-export default App;
+};

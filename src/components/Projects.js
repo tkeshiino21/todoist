@@ -1,22 +1,26 @@
 import React, { useState } from "react";
-import { useSelectedProjectValue, useProjectsValue } from "../context";
+import PropTypes from "prop-types";
+import {
+  useSelectedProjectValue,
+  useProjectsValue,
+  ProjectsContext
+} from "../context";
+import { IndividualProject } from "./IndividualProject";
 
 export const Projects = ({ activeValue = null }) => {
-  const { active, setActive } = useState(activeValue);
+  const [active, setActive] = useState(activeValue);
   const { setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
 
   console.log(projects);
-  console.log(active);
-  console.log(setSelectedProject);
   console.log("here");
   return (
     projects &&
     projects.map(project => (
       <li
         key={project.projectId}
-        data-doc-id={project.docId}
         data-testid="project-action-parent"
+        data-doc-id={project.docId}
         className={
           active === project.projectId
             ? "active sidebar__project"
@@ -37,9 +41,13 @@ export const Projects = ({ activeValue = null }) => {
             setSelectedProject(project.projectId);
           }}
         >
-          {("Project", JSON.stringify(project))}
+          <IndividualProject project={project} />
         </div>
       </li>
     ))
   );
+};
+
+ProjectsContext.propTypes = {
+  activeValue: PropTypes.bool
 };
