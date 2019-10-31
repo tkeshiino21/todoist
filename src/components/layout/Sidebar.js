@@ -9,40 +9,38 @@ import {
 export const Sidebar = () => {
   return (
     <div className="sidebar" data-testid="sidebar">
-      <ul>
+      <ul className="siedebar__generic">
         <li data-testid="inbox" dclassName="inbox">
           <span>
             <FaInbox />
-            Inbox
           </span>
+          <span>Inbox</span>
         </li>
         <li data-testid="Today" className="today">
           <span>
             <FaRegCalendarAlt />
-            Today
           </span>
+          <span>Today</span>
         </li>
         <li data-testid="7days" className="7days">
           <span>
             <FaCalendar />
-            Next 7 days
           </span>
+          <span>Next 7 days</span>
         </li>
-        <li>
+      </ul>
+      <ul className="sidebar__middle">
+        <li data-testid="projects" className="projects">
           <span>
             <FaChevronDown />
           </span>
+          <span>Projects</span>
         </li>
       </ul>
-
-      <div className="sidebar__middle">
-        <h2>Projects</h2>
-      </div>
-
       <ul className="sidebar__projects">
         <li>project will be here</li>
+        <li>Add your project!</li>
       </ul>
-      <p>Add your project!</p>
     </div>
   );
 };
