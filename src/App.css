@@ -167,6 +167,16 @@ nav div.settings li:hover {
   background-color: yellow;
 }
 
+nav div.settings li.settings__add {
+  margin-right: 15px;
+  font-size: 50px;
+}
+
+nav div.settings li.settings__dark-mode svg {
+  width: 20px;
+  height: 20px;
+}
+
 .sidebar {
   width: 266px;
   height: calc(100vh);
