@@ -172,6 +172,7 @@ nav div.settings li:hover {
   height: calc(100vh);
   padding-top: 74px;
   position: fixed;
+  text-align: left;
   border-right: 1px solid #f1f1f1;
   background-color: #fafafa;
 }
