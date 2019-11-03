@@ -3,6 +3,8 @@ import { Checkbox } from "./Checkbox";
 import { useTasks } from "../hooks";
 import { getTitle, getCollatedTitle, collatedTasksExist } from "../helpers";
 import { useSelectedProjectValue, useProjectsValue } from "../context";
+import { collatedTasks } from "../constants";
+import { AddTask } from "./AddTask";
 
 export const Tasks = () => {
   const { selectedProject } = useSelectedProjectValue();
@@ -11,18 +13,25 @@ export const Tasks = () => {
 
   let projectName = "";
 
-  if (projects && selectedProject && !collatedTasksExist(selectedProject)) {
-    projectName = getCollatedTitle(projects, selectedProject).name;
+  if (collatedTasksExist(selectedProject) && selectedProject) {
+    projectName = getCollatedTitle(collatedTasks, selectedProject).name;
+    //console.log("projectName 1: ", projectName);
   }
 
-  if (collatedTasksExist(selectedProject) && selectedProject) {
+  if (
+    projects &&
+    //projects.legth > 0 &&
+    selectedProject &&
+    !collatedTasksExist(selectedProject)
+  ) {
     projectName = getTitle(projects, selectedProject).name;
-    console.log("projectName 1: ", projectName);
   }
 
   useEffect(() => {
     document.title = `${projectName}: Todoist`;
-  }, [projectName]);
+  });
+
+  //console.log('tasks', tasks);
 
   return (
     <div className="tasks" data-testid="tasks">
@@ -35,6 +44,7 @@ export const Tasks = () => {
           </li>
         ))}
       </ul>
+      <AddTask />
     </div>
   );
 };

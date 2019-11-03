@@ -5,13 +5,13 @@ import { collatedTasksExist } from "../helpers";
 
 export const useTasks = selectedProject => {
   const [tasks, setTasks] = useState([]);
-  const [archivedTasks, setArchievedTasks] = useState([]);
+  const [archivedTasks, setArchivedTasks] = useState([]);
 
   useEffect(() => {
     let unsubscribe = firebase
       .firestore()
       .collection("tasks")
-      .where("userId", "==", "4321");
+      .where("userId", "==", "43215");
 
     unsubscribe =
       selectedProject && !collatedTasksExist(selectedProject)
@@ -41,7 +41,7 @@ export const useTasks = selectedProject => {
             )
           : newTasks.filter(task => task.archived !== true)
       );
-      setArchievedTasks(newTasks.filter(task => task.archived !== false));
+      setArchivedTasks(newTasks.filter(task => task.archived !== false));
     });
 
     return () => unsubscribe();

@@ -10,8 +10,8 @@ import { useSelectedProjectValue } from "../../context";
 import { AddProject } from "../AddProject";
 
 export const Sidebar = () => {
-  const { setSelectedProject } = useSelectedProjectValue;
-  const [active, setActive] = useState("inbox");
+  const { setSelectedProject } = useSelectedProjectValue();
+  const [active, setActive] = useState("Inbox");
   const [showProjects, setShowProjects] = useState(true);
 
   return (
@@ -22,7 +22,7 @@ export const Sidebar = () => {
           className={active === "inbox" ? "active" : undefined}
         >
           <div
-            ddata-testid="inbox-action"
+            data-testid="inbox-action"
             aria-label="Show inbox tasks"
             tabIndex={0}
             role="button"
@@ -41,17 +41,55 @@ export const Sidebar = () => {
             <span>Inbox</span>
           </div>
         </li>
-        <li data-testid="Today" className="today">
-          <span>
-            <FaRegCalendarAlt />
-          </span>
-          <span>Today</span>
+        <li
+          data-testid="today"
+          className={active === "today" ? "active" : undefined}
+        >
+          <div
+            data-testid="today-action"
+            aria-label="show today's tasks"
+            tabIndex={0}
+            role="button"
+            onClick={() => {
+              setActive("today");
+              setSelectedProject("TODAY");
+            }}
+          >
+            <span>
+              <FaRegCalendarAlt />
+            </span>
+            <span>Today</span>
+          </div>
         </li>
-        <li data-testid="7days" className="7days">
-          <span>
-            <FaCalendar />
-          </span>
-          <span>Next 7 days</span>
+        <li
+          data-testid="7days"
+          aria-label="Show tasks for the next 7 days"
+          className="7days"
+          tabIndex="button"
+          onClick={() => {
+            setActive("next_7");
+            setSelectedProject("NEXT_7");
+          }}
+        >
+          <div
+            data-testid="next_7-action"
+            aria-label="Show tasks for the next 7 days"
+            tabIndex={0}
+            role="button"
+            onClick={() => {
+              setActive("next_7");
+              setSelectedProject("NEXT_7");
+            }}
+            onKeyDown={() => {
+              setActive("next_7");
+              setSelectedProject("NEXT_7");
+            }}
+          >
+            <span>
+              <FaCalendar />
+            </span>
+            <span>Next 7 days</span>
+          </div>
         </li>
       </ul>
       <div

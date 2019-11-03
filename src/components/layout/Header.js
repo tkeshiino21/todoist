@@ -1,28 +1,53 @@
-import React from "react";
-import logo from "../images/logo.png";
+import React, { useState } from "react";
 import { FaPizzaSlice } from "react-icons/fa";
+import { AddTask } from "../AddTask";
+import { PropTypes } from "prop-types";
 
-export const Header = () => {
-  //const x = 1;
+export const Header = ({ darkMode, setDarkMode }) => {
+  const [shouldShowMain, setShouldShowMain] = useState(false);
+  const [showQuickAddTask, setShowQuickAddTask] = useState(false);
+
   return (
     <header className="logo" data-testid="header">
       <nav>
         <p>Header</p>
-        <img src={logo} alt="logo" />
         <div className="settings">
           <ul>
-            <li>
-              <FaPizzaSlice />
+            <li className="settings__add">
+              <button
+                data-testid="quick-add-task-action"
+                aria-label="Quick add task"
+                type="button"
+                onClick={() => {
+                  setShowQuickAddTask(true);
+                  setShouldShowMain(true);
+                }}
+              >
+                +
+              </button>
             </li>
-            <li>
-              <FaPizzaSlice />
-            </li>
-            <li>
+            <li
+              data-testid="dark-mode-action"
+              clasName="settings__darkmode"
+              onClick={() => setDarkMode(!darkMode)}
+            >
               <FaPizzaSlice />
             </li>
           </ul>
         </div>
       </nav>
+
+      <AddTask
+        showAddTaskMain={false}
+        shouldShowMain={shouldShowMain}
+        showQuickAddTask={showQuickAddTask}
+        setShowQuickAddTask={setShowQuickAddTask}
+      />
     </header>
   );
+};
+
+Header.propTypes = {
+  darkMode: PropTypes.bool.isRequired,
+  setDarkMode: PropTypes.func.isRequired
 };
